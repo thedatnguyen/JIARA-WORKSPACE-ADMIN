@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include(global.__path_elements + 'head') %>
+</head>
+
+<body>
+  <div class="container" id="wrapper">
+    <%- include(global.__path_elements + 'navbar') %>
+    <div id="page-wrapper">
+      <%- include(body) %>
+    </div>
+  </div>
+
+  <%- include(global.__path_elements + 'scripts') %>
+
+  <script type="text/javascript">
+    const authToken = localStorage.getItem('auth-token');
+  </script>
+
+</body>
+
+</html>

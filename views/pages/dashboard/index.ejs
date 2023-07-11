@@ -1,0 +1,65 @@
+<h3><%= routeName %></h3>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Search & Filter
+        <!-- href="<%= //linkPrefix %>status/all" -->
+        <a href="#">
+          <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
+        </a>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="status-list col-sm-6 pl0">
+            <%- //filterStatusHelper(collection, statusFilter, keyword) %>
+            <a class="btn m-b-sm btn-success btn-sm">
+              ALL
+            </a>
+            <a class="btn m-b-sm btn-default btn-sm">
+              ACTIVE
+            </a>
+            <a class="btn m-b-sm btn-default btn-sm">
+              INACTIVE
+            </a>
+          </div>
+
+
+          <div class="col-sm-6">
+            <form method="GET">
+              <div class="input-group">
+                <input type="hidden" name="status">
+                <input type="text" class="form-control" name="txtSearch" placeholder="Search for..." id="txtSearch">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" type="submit">Search</button>
+                </span>
+                <span class="input-group-btn">
+                  <a class="btn btn-success" type="button">Clear</a>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include(global.__path_elements + 'tableAccounts') %>
+
+
+
+  <div class="col-lg-12">
+    <%- //paginationHelper(pagination, collection, currentStatus, keyword) %>
+  </div>
+
+</div>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+  var socket = io();
+  socket.on('accounts change', snapshot => {
+    location.reload();
+  })
+</script>

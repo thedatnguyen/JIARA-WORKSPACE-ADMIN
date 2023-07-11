@@ -1,0 +1,58 @@
+<div class="col-lg-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">Accounts</div>
+      <div class="panel-body">
+
+        <div class="input-group" style="float: left;">
+          <span class="input-group-btn1">
+            <button type="submit" class="btn btn-danger" form="zt-form" id="btnDeleteMany">Delete selected</button>
+          </span>
+          <span class="input-group-btn1">
+            <!-- href="<%= //linkPrefix %>status/<%= //currentStatus %>" -->
+            <button type="submit" class="btn btn-warning" form="zt-form" id="btnUpdateMany">Update selected</button>
+          </span>
+          <span class="input-group-btn1">
+            <!-- href="<%= //linkPrefix %>status/<%= //currentStatus %>" -->
+            <a class="btn btn-success" type="button">Add new items</a>
+          </span>
+
+        </div>
+
+        <form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" class="cbAll" /></th>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Fullname</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Gender</th>
+                  <th colspan="2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% accounts.forEach((account, index) => {%>
+                  <tr value="<%=account.username%>" class="itemRow" name="">
+                    <td><input type="checkbox" name="cid" value="<%= account.username %>" /></td>
+                    <td><%= index + 1 %></td>
+                    <td><input id="username" hidden><%= account.username %></input></td>
+                    <td><input id="fullname" hidden><%= account.firstname + ' ' + account.lastname%></input></td>
+                    <td><input id="email" hidden><%= account.email %></input></td>
+                    <td><input id="phoneNumber" hidden><%= account.phoneNumber %></input></td>
+                    <td><input id="gender" hidden><%= account.gender %></input></td>
+                    <td>
+                      <a href="" type="button" class="btn btn-warning btn-sm">Update</a>
+                      <a href="" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                    </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

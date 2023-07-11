@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <!--send auth-token from client's localSorage to server-->
+    <form hidden action="/" method="POST">
+      <input name="auth-token" id="auth-token">
+    </form>
+    <script type="text/javascript">
+      const authToken = localStorage.getItem('auth-token');
+      document.getElementById('auth-token').value = authToken;
+      document.forms[0].submit();
+    </script>
+  </body>
+</html>
