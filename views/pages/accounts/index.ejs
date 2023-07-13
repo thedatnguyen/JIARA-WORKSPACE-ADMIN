@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <%- include(global.__path_elements + 'tablePendings') %>
+  <%- include(global.__path_elements + 'tableAccounts') %>
 
 
 
@@ -59,9 +59,7 @@
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script>
   var socket = io();
-  socket.on('pendings change', snapshot => {
+  socket.on('accounts change', snapshot => {
     location.reload();
   })
-
-  document.cookie = 'auth-token=' + localStorage.getItem('auth-token');
 </script>

@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 let loginRouter = require('./routes/loginRouter');
 let dashboardRouter = require('./routes/dashboardRouter');
+let accountsRouter = require('./routes/accountsRouter');
 
 // create app
 var app = express();
@@ -32,9 +33,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);
 app.use('/', dashboardRouter);
+app.use('/accounts', accountsRouter);
 
 // path setup 
 var pathConfig = require('./path');
+const { arch } = require('os');
 global.__base = __dirname;
 global.__path_views = __base + pathConfig.folder_views;
 global.__path_elements = __base + pathConfig.folder_elements;

@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+const apis = require('../apis');
+
 module.exports.getLoginPage = async (req, res, next) => {
     res.render('pages/login/login');
 };
@@ -7,7 +9,7 @@ module.exports.getLoginPage = async (req, res, next) => {
 module.exports.authenticate = async (req, res, next) => {
     try {
         const { username, password } = req.body;
-        await axios.post('https://jiara-workspace-server.onrender.com/api/auth/login',
+        await axios.post(apis.login,
             { username, password })
             .then(response => {
                 //console.log(response.data);
