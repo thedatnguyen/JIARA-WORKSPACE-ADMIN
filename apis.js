@@ -1,4 +1,4 @@
-const root = 'http://localhost:5001';
+const root = 'https://jiara-workspace-server.onrender.com';
 
 module.exports = {
     getPendings: `${root}/pendings`,

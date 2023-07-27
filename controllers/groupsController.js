@@ -30,7 +30,7 @@ module.exports.getAllGroups = async (req, res, next) => {
             .catch(err => console.log(err.response.data))
     } catch (error) {
         console.log(error.message);
-        res.render('error');
+        //res.render('error');
     }
 }
 
