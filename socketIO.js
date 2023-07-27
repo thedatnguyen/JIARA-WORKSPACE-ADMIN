@@ -1,8 +1,12 @@
 module.exports.config = async (io) => {
     const {db} = require('./configs/firebase');
+    const axios = require('axios');
     
     io.on('connection', socket => {
-        //console.log('connected with id: ' + socket.id);
+        socket.on('new message', () => {
+            console.log('new message');
+            io.emit('new message', 'change');
+        })
     })
 
     db.collection('accounts').onSnapshot(snapshot => {
@@ -16,4 +20,6 @@ module.exports.config = async (io) => {
             io.emit('pendings change', snapshot);
         })
     })
+
+
 }

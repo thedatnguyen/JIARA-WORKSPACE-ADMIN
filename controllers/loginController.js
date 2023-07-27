@@ -12,9 +12,9 @@ module.exports.authenticate = async (req, res, next) => {
         await axios.post(apis.login,
             { username, password })
             .then(response => {
-                //console.log(response.data);
-                const { status, data, token } = response.data;
-                if (data.role === 'admin') {
+                console.log(response.data);
+                const { role, token } = response.data;
+                if (role === 'admin') {
                     return res.render('verify', {token: token});
                 }
                 return res.render('pages/login/login', { status: 'login failed' });

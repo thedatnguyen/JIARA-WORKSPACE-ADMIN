@@ -1,0 +1,35 @@
+<div class="modal fade" id="modalCreateGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create new group</h4>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form action="/groups" method="post" id="createGroupForm">
+          <h5 style="font-weight: bold;padding-bottom: 20px;">Group name: <input name="groupName" placeholder="enter group name"></h5>
+          <a type="button" class="btn btn-sm btn-success" id="btnAdd">Add</a>
+
+          <table class="table table-hover" id="tableManagers">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Manager ID</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </form>
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <a type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Close</a>
+        <a class="btn btn-primary btn-sm" onclick="submitForm()">Save</a>
+      </div>
+    </div>
+  </div>
+</div>

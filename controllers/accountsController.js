@@ -16,7 +16,6 @@ module.exports.getAllAccounts = async (req, res, next) => {
                 const {status, data} = apiResponse.data;
                 if (status === 'success') {
                     const accounts = data;
-                    console.log(accounts);
                     res.render('backend', {
                         title: 'Dashboard',
                         'routeName': 'aasasas',
@@ -25,7 +24,11 @@ module.exports.getAllAccounts = async (req, res, next) => {
                     });
                 }
             })
-            .catch(err => console.log(err.response.data));
+            .catch(err => {
+                //console.log(err.response.data);
+                res.locals.errorMessage = err.response.data.message;
+                next();
+            });
 
     } catch (error) {
         res.status(500).send({ error: error.message });

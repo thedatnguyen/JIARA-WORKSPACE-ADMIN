@@ -1,0 +1,50 @@
+<input hidden value="<%=accessToken%>" id="token">
+<input hidden value="<%=chatId%>" id="chatId">
+
+<script src="https://cdn.jsdelivr.net/npm/@weavy/dropin-js@17.1.0/dist/weavy.js" crossorigin="anonymous"></script>
+<script>
+  Weavy.url = "https://f1746aae94594612865d8f61eb9291e7.weavy.io";
+  Weavy.tokenFactory = async (refresh) => document.getElementById("token").value;
+  Weavy.tz = 'Asia/Ho_Chi_Minh';
+</script>
+<div id="chat-container" class="column" style="flex: 100%;">
+  <iframe class="row" id="chat" src="https://f1746aae94594612865d8f61eb9291e7.weavy.io/dropin/messenger" frameborder="0">
+  </iframe>
+</div>
+
+
+<script>
+  let pageWrapper = document.getElementById('page-wrapper');
+  pageWrapper.setAttribute('class', 'row');
+  const chatFrame = document.getElementById('chat');
+  const chatId = document.getElementById('chatId').value;
+  if (chatId) {
+    chatFrame.setAttribute('src', `https://f1746aae94594612865d8f61eb9291e7.weavy.io/dropin/messenger/${chatId}`);
+  }
+
+  var messenger = new Messenger();
+  messenger.on('badge', (badge) => {
+    console.log(badge.count);
+  })
+</script>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    /* overflow: hidden; */
+    overflow: -moz-hidden-unscrollable;
+  }
+
+  #page-wrapper {
+    padding: 0 0 0 0px;
+    margin-right: 0 0 0 0px;
+    display: flex;
+  }
+
+  #chat {
+    width: 100%;
+    height: 67.5%;
+  }
+</style>

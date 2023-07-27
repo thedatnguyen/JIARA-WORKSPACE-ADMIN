@@ -1,42 +1,42 @@
 <div class="col-lg-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">Accounts</div>
-      <div class="panel-body">
-        <form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th><input type="checkbox" class="cbAll" /></th>
-                  <th>#</th>
-                  <th>Username</th>
-                  <th>Fullname</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Gender</th>
-                  <th colspan="2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% accounts.forEach((account, index) => {%>
-                  <tr value="<%=account.username%>" class="itemRow" name="">
-                    <td><input type="checkbox" name="cid" value="<%= account.username %>" /></td>
-                    <td><%= index + 1 %></td>
-                    <td><input id="username" hidden><%= account.username %></input></td>
-                    <td><input id="fullname" hidden><%= account.firstname + ' ' + account.lastname%></input></td>
-                    <td><input id="email" hidden><%= account.email %></input></td>
-                    <td><input id="phoneNumber" hidden><%= account.phoneNumber %></input></td>
-                    <td><input id="gender" hidden><%= account.gender %></input></td>
-                    <td>
-                      <a type="button" class="btn btn-success btn-sm">Approve</a>
-                      <a type="button" class="btn btn-danger btn-sm btn-delete">Reject</a>
-                    </td>
-                  </tr>
-                  <% }) %>
-              </tbody>
-            </table>
-          </div>
-        </form>
-      </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">Accounts</div>
+    <div class="panel-body">
+      <form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><input type="checkbox" class="cbAll" /></th>
+                <th>#</th>
+                <th>Username</th>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th colspan="2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% accounts.forEach((account, index) => {%>
+              <tr value="<%=account.username%>" class="itemRow" name="">
+                <td><input type="checkbox" name="cid" value="<%= account.username %>" /></td>
+                <td><%= index + 1 %></td>
+                <td><input id="username" hidden><%= account.username %></input></td>
+                <td><input id="fullname" hidden><%= account.firstname + ' ' + account.lastname%></input></td>
+                <td><input id="email" hidden><%= account.email %></input></td>
+                <td><input id="phoneNumber" hidden><%= account.phoneNumber %></input></td>
+                <td><input id="gender" hidden><%= account.gender %></input></td>
+                <td>
+                  <a type="button" class="btn btn-primary btn-sm" href="/messages?idToChat=<%=account.chatAccountId%>">Message</a>
+                  <a type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </form>
     </div>
   </div>
+</div>

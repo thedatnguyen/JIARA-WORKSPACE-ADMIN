@@ -1,0 +1,7 @@
+<input list="accounts" name="managerIds">
+
+<datalist id="accounts">
+    <% accounts.forEach(account => { %>
+        <option value="<%=account.username%>">
+    <% }) %>
+</datalist>

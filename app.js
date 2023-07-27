@@ -7,6 +7,8 @@ var logger = require('morgan');
 let loginRouter = require('./routes/loginRouter');
 let dashboardRouter = require('./routes/dashboardRouter');
 let accountsRouter = require('./routes/accountsRouter');
+let messagesRouter = require('./routes/messagesRouter');
+const groupsRouter = require('./routes/groupsRouter');
 
 // create app
 var app = express();
@@ -15,7 +17,7 @@ var app = express();
 const server = require('http').createServer(app);
 
 // create io connection
-const {Server} = require('socket.io');
+const { Server } = require('socket.io');
 const io = new Server(server);
 
 // config io to listen for database changes
@@ -34,21 +36,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter);
 app.use('/', dashboardRouter);
 app.use('/accounts', accountsRouter);
+app.use('/groups', groupsRouter);
+app.use('/messages', messagesRouter);
 
 // path setup 
 var pathConfig = require('./path');
-const { arch } = require('os');
 global.__base = __dirname;
 global.__path_views = __base + pathConfig.folder_views;
 global.__path_elements = __base + pathConfig.folder_elements;
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -58,6 +61,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+require('dotenv').config();
 module.exports = {
   app: app,
   server: server

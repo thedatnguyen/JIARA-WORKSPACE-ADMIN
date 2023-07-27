@@ -1,0 +1,103 @@
+<br>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Action & Filter
+        <a href="#">
+          <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
+        </a>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="status-list col-sm-6 pl0">
+            <a class="btn m-b-sm btn-success" data-toggle="modal" data-target="#modalCreateGroup">
+              Create new group
+            </a>
+          </div>
+
+
+          <div class="col-sm-6">
+            <form method="GET">
+              <div class="input-group">
+                <input type="hidden" name="status">
+                <input type="text" class="form-control" name="txtSearch" placeholder="Search for..." id="txtSearch">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" type="submit">Search</button>
+                </span>
+                <span class="input-group-btn">
+                  <a class="btn btn-success" type="button">Clear</a>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include(global.__path_elements + 'tableGroups') %>
+
+  <%- include(global.__path_elements + 'modalCreateGroup') %>
+
+  <div class="col-lg-12">
+    <%- //paginationHelper(pagination, collection, currentStatus, keyword) %>
+  </div>
+
+</div>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+  document.getElementById('btnAdd')
+    .addEventListener('click', () => {
+      const table = document.getElementById('tableManagers');
+      const index = table.rows.length;
+      const row = table.insertRow(index);
+      row.innerHTML =
+        `<tr class="itemRow" name="">
+          <td name="index">${index}</td>
+          <td><%- include(global.__path_elements + 'selectUser', {accounts}) %></td>
+          <td>
+            <a onclick="deleteRow(this)"><i class="fas fa-times"></i></a>
+          </td>
+        </tr>`
+    })
+
+  const deleteRow = (row) => {
+    var index = row.parentNode.parentNode.rowIndex;
+    document.getElementById("tableManagers").deleteRow(index);
+
+    // update index
+    const rowIndexes = Array.from(document.getElementsByName("index"));
+    rowIndexes.forEach(element => {
+      const newIndex = element.parentNode.rowIndex;
+      element.innerText = newIndex;
+    });
+  }
+
+  const submitForm = () => {
+    // get list accounts
+    let accounts = []
+    Array.from(document.getElementsByTagName('option'))
+      .map(ele => accounts.push(ele.value));
+    console.log(accounts);
+
+    // validate ids before submit
+    let isValid = true;
+    const managerIds = Array.from(document.getElementsByName('managerIds'))
+      .map(ele => ele.value);
+    if(managerIds.length == 0) isValid = false;
+    managerIds.forEach(managerId => {
+      if (!accounts.includes(managerId)) {
+        document.getElementById('status').innerText = 'Manager id(s) is invalid!';
+        isValid = false;
+        return;
+      }
+    })
+
+    if(isValid) document.getElementById('createGroupForm').submit();
+  }
+  document.cookie = 'auth-token=' + localStorage.getItem('auth-token');
+</script>

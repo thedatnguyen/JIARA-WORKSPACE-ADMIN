@@ -12,13 +12,16 @@
       <%- include(body) %>
     </div>
   </div>
-
   <%- include(global.__path_elements + 'scripts') %>
-
-  <script type="text/javascript">
-    const authToken = localStorage.getItem('auth-token');
-  </script>
-
 </body>
+
+<script>
+  const btnLogout = document.getElementById('logout');
+  btnLogout.addEventListener('click', () => {
+    localStorage.clear();
+    document.cookie = 'auth-token=expires';
+    location.replace('/');
+  })
+</script>
 
 </html>

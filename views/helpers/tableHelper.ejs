@@ -1,0 +1,13 @@
+<%
+const deleteRow = (row) => {
+    var index = row.parentNode.parentNode.rowIndex;
+    document.getElementById("tableManagers").deleteRow(index);
+
+    // update index
+    const rowIndexes = Array.from(document.getElementsByName("index"));
+    rowIndexes.forEach(element => {
+      const newIndex = element.parentNode.rowIndex;
+      element.innerText = newIndex;
+    });
+  }
+%>

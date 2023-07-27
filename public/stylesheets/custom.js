@@ -81,7 +81,7 @@ $(document).ready(function () {
         $(form_selector + " .btnAction").on("click", function () {
             isDelete = pattenCheckDelete.test($(slb_selector).val());
             if(isDelete){
-                var confirmDelete = confirm('Are you really want to delete?');
+                var confirmDelete = confirm('confirm?');
                 if(confirmDelete === false){
                     return;
                 }
@@ -122,4 +122,14 @@ $(document).ready(function () {
     }
 });
 
+const deleteRow = (row) => {
+    var index = row.parentNode.parentNode.rowIndex;
+    document.getElementById("tableManagers").deleteRow(index);
 
+    // update index
+    const rowIndexes = Array.from(document.getElementsByName("index"));
+    rowIndexes.forEach(element => {
+      const newIndex = element.parentNode.rowIndex;
+      element.innerText = newIndex;
+    });
+  }

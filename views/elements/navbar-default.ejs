@@ -2,18 +2,26 @@
   <div class="sidebar-collapse">
     <ul class="nav" id="side-menu">
       <li>
-        <a href="#">
-          <i class="fa fa-dashboard fa-fw"></i> Dashboard
+        <a href="/">
+          <i class="fa-solid fa-house"></i> Dashboard
         </a>
       </li>
       <li>
         <a href="/accounts">
-          <i class="fa fa-users fa-fw"></i> Accounts
+          <i class="fa-solid fa-address-card"></i> Accounts
         </a>
       </li>
       <li>
-        <a href="#">
-          <i class="fa fa-users fa-fw"></i> Groups
+        <a href="/groups">
+          <i class="fa-solid fa-people-group"></i> Groups
+        </a>
+      </li>
+      <li>
+        <a href="/messages" id="message-nav">
+          <i class="fa-solid fa-message"></i> Messages
+          <span id="messageNoti" hidden>
+            <i class="fa-solid fa-plus fa-bounce" style="color: #e01f1f;"></i>
+          </span>
         </a>
       </li>
     </ul>
@@ -21,3 +29,9 @@
   </div>
   <!-- /.sidebar-collapse -->
 </div>
+<script>
+  document.getElementById('message-nav')
+    .addEventListener('click', () => {
+      document.getElementById('messageNoti').setAttribute('hidden', 'true');
+    })
+</script>

@@ -1,4 +1,4 @@
-<h3><%= routeName %></h3>
+<br>
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-info">
@@ -61,5 +61,7 @@
   var socket = io();
   socket.on('accounts change', snapshot => {
     location.reload();
-  })
+  });
+
+  document.cookie = 'auth-token=' + localStorage.getItem('auth-token');
 </script>

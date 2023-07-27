@@ -1,0 +1,61 @@
+<br>
+<div class="row">
+  <%- include(global.__path_elements + 'tableGroupDetail') %>
+</div>
+
+<%- include(global.__path_views + 'helpers/tableHelper') %>
+
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+  document.getElementById('btnAdd')
+    .addEventListener('click', () => {
+      const table = document.getElementById('tableManagers');
+      const index = table.rows.length;
+      const row = table.insertRow(index);
+      row.innerHTML =
+        `<tr class="itemRow" name="">
+          <td><input type="checkbox" name="cid"/></td>
+          <td name="index">${index}</td>
+          <td><%- include(global.__path_elements + 'selectUser', {accounts}) %></td>
+          <td>
+            <a type="button" class="btn btn-sm btn-warning" onclick="deleteRow(this)">Remove</a>
+          </td>
+        </tr>`
+    })
+
+  const deleteRow = (row) => {
+    var index = row.parentNode.parentNode.rowIndex;
+    document.getElementById("tableManagers").deleteRow(index);
+
+    // update index
+    const rowIndexes = Array.from(document.getElementsByName("index"));
+    rowIndexes.forEach(element => {
+      const newIndex = element.parentNode.rowIndex;
+      element.innerText = newIndex;
+    });
+  }
+
+  const submitForm = () => {
+    // get list accounts
+    let accounts = []
+    Array.from(document.getElementsByTagName('option'))
+      .map(ele => accounts.push(ele.value));
+    console.log(accounts);
+
+    // validate ids before submit
+    let isValid = true;
+    const managerIds = Array.from(document.getElementsByName('managerIds'))
+      .map(ele => ele.value);
+    if(managerIds.length == 0) isValid = false;
+    managerIds.forEach(managerId => {
+      if (!accounts.includes(managerId)) {
+        document.getElementById('status').innerText = 'Manager id(s) is invalid!';
+        isValid = false;
+        return;
+      }
+    })
+
+    if(isValid) document.getElementById('zt-form').submit();
+  }
+</script>
