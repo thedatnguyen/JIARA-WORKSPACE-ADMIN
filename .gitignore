@@ -1,5 +1,2 @@
 node_modules
 .env
-apis.js
-controllers/messages.js
-controllers/groupsController.js
