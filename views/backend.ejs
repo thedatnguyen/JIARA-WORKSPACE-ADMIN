@@ -22,6 +22,14 @@
     document.cookie = 'auth-token=expires';
     location.replace('/');
   })
-</script>
 
+  const usernameSpan = document.getElementById('username');
+  if(!usernameSpan.innerText){
+    const username = localStorage.getItem('username');
+    usernameSpan.innerText = username;
+  }
+
+  const avatar = document.getElementById('avatar');
+  avatar.setAttribute('src', localStorage.getItem('avatarUrl'));
+</script>
 </html>

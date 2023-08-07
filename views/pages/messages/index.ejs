@@ -7,44 +7,52 @@
   Weavy.tokenFactory = async (refresh) => document.getElementById("token").value;
   Weavy.tz = 'Asia/Ho_Chi_Minh';
 </script>
-<div id="chat-container" class="column" style="flex: 100%;">
-  <iframe class="row" id="chat" src="https://f1746aae94594612865d8f61eb9291e7.weavy.io/dropin/messenger" frameborder="0">
+<div id="chat-container">
+  <iframe id="chat" src="https://f1746aae94594612865d8f61eb9291e7.weavy.io/dropin/messenger" frameborder="0">
   </iframe>
 </div>
 
 
 <script>
   let pageWrapper = document.getElementById('page-wrapper');
-  pageWrapper.setAttribute('class', 'row');
   const chatFrame = document.getElementById('chat');
   const chatId = document.getElementById('chatId').value;
   if (chatId) {
     chatFrame.setAttribute('src', `https://f1746aae94594612865d8f61eb9291e7.weavy.io/dropin/messenger/${chatId}`);
   }
 
+
   var messenger = new Messenger();
   messenger.on('badge', (badge) => {
     console.log(badge.count);
   })
+
+  const height = document.querySelector('#page-wrapper').clientHeight;
+  console.log(height);
 </script>
 
 <style>
-  html,
-  body {
-    margin: 0;
-    height: 100%;
-    /* overflow: hidden; */
-    overflow: -moz-hidden-unscrollable;
-  }
 
+  html, body {
+    overflow: hidden;
+    height: 100vh;
+  }
   #page-wrapper {
     padding: 0 0 0 0px;
-    margin-right: 0 0 0 0px;
-    display: flex;
+    height: inherit;
   }
 
   #chat {
     width: 100%;
-    height: 67.5%;
+    height: 95vh;
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+  }
+
+  #chat-container {
+    width: 100%;
+    height: 100vh;
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
   }
 </style>

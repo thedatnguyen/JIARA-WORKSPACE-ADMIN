@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const apis = require('../apis');
-const {getAuthTokenFromCookie} = require('../helpers');
+const { getAuthTokenFromCookie } = require('../helpers');
 
 module.exports.entry = (req, res) => {
     res.render('index');

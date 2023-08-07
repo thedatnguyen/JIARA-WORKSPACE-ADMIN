@@ -9,6 +9,7 @@ let dashboardRouter = require('./routes/dashboardRouter');
 let accountsRouter = require('./routes/accountsRouter');
 let messagesRouter = require('./routes/messagesRouter');
 const groupsRouter = require('./routes/groupsRouter');
+const personalRouter = require('./routes/personalRouter');
 
 // create app
 var app = express();
@@ -38,12 +39,15 @@ app.use('/', dashboardRouter);
 app.use('/accounts', accountsRouter);
 app.use('/groups', groupsRouter);
 app.use('/messages', messagesRouter);
+app.use('/personal', personalRouter);
 
 // path setup 
 var pathConfig = require('./path');
 global.__base = __dirname;
 global.__path_views = __base + pathConfig.folder_views;
 global.__path_elements = __base + pathConfig.folder_elements;
+global.__path_avatars = __base + pathConfig.folder_avatars;
+global.__path_posts = __base + pathConfig.folder_posts;
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
