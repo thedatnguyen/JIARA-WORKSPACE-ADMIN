@@ -107,21 +107,21 @@
   })
 
   // read input image and load to temp 
-  var openFile = (file) => {
-    var input = file.target;
-    var reader = new FileReader();
-    reader.onload = () => {
-      var dataURL = reader.result;
-      avatar_image.src = dataURL;
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
+  // var openFile = (file) => {
+  //   var input = file.target;
+  //   var reader = new FileReader();
+  //   reader.onload = () => {
+  //     var dataURL = reader.result;
+  //     avatar_image.src = dataURL;
+  //   };
+  //   reader.readAsDataURL(input.files[0]);
+  // }
 
-  avatarInput.addEventListener('change', (e) => {
-    if (avatarInput.files.length) {
-      openFile(e);
-    }
-  })
+  // avatarInput.addEventListener('change', (e) => {
+  //   if (avatarInput.files.length) {
+  //     openFile(e);
+  //   }
+  // })
 
   document.getElementById('btnUpdate').addEventListener('click', () => {
     document.getElementById('phoneNumberEdit').value = document.getElementById('phoneNumber').value;
